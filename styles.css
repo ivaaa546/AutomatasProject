@@ -1,0 +1,393 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1, h2, h3 {
+    margin: 0;
+    padding: 5px 0;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fdfdfd;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+/* ESTILOS ACTUALIZADOS PARA CENTRAR EL CONTENIDO DE INPUT-SECTION */
+#input-section {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente (head, botones, result) */
+    align-items: center; /* Centra los elementos hijos (head, botones, result) horizontalmente */
+    flex-wrap: nowrap;
+    gap: 15px; /* Espacio vertical entre los elementos apilados */
+}
+
+/* Estilos para el contenedor de la cadena de entrada y ejemplos */
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    flex-wrap: wrap; 
+    gap: 10px;
+    font-size: 0.95rem;
+    /* Los estilos para label, input, span y buttons están definidos globalmente o por ID/clase */
+}
+
+/* Estilos para el contenedor de los botones de control */
+.botones {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 10px;
+    /* Sin margin-top ya que #input-section maneja el espaciado con gap */
+}
+
+
+/* FIN DE LOS ESTILOS ACTUALIZADOS */
+
+
+#inputString {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    max-width: 250px; /* Limitar el ancho del input para que no se extienda demasiado al centrar */
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover:not(:disabled) {
+    background-color: #2980b9;
+}
+
+button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.message {
+    width: 100%;
+    margin-top: 0; /* Se ajustó a 0 porque #input-section gap lo maneja */
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    max-width: 600px; /* Limitar el ancho del mensaje para mejor lectura y centrado */
+    text-align: center; /* Centrar el texto dentro del mensaje */
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+.graph-container {
+    height: 200px; /* Altura para el grafo */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-top: 15px;
+}
+
+#currentStepInfo {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+}
+
+#currentStepInfo p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+#currentStepInfo span {
+    font-weight: bold;
+    color: #007bff;
+}
+
+pre {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 4px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+#diLogContainer {
+    max-height: 300px; /* Altura máxima para el log de DI */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.highlight-state {
+    background-color: #fff3cd; /* Color para resaltar el estado actual en el grafo */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    font-size: 0.9em;
+}
+
+/* Estilos para nodos de vis.js */
+.vis-network .vis-node.current-state {
+    border-color: #007bff;
+    border-width: 3px;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.vis-network .vis-node.accept-state {
+    background-color: #28a745;
+    color: white;
+    border-color: #218838;
+}
+
+.vis-network .vis-node.start-state {
+    border-color: #ffc107;
+    border-width: 3px;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+}
+
+
+
+
+/* Estilos para el contenedor de los nuevos botones de menú */
+.menu-opciones {
+    display: flex;
+    justify-content: center; /* Centra el grupo de botones horizontalmente */
+    align-items: center;
+    flex-wrap: wrap; /* Permite que los botones se envuelvan en pantallas pequeñas */
+    gap: 10px; /* Espacio uniforme entre los botones */
+    margin: 18px 0; /* Separación vertical del bloque */
+    padding: 12px 14px; /* Relleno interno para que se perciba como bloque */
+    background-color: #f8fbff; /* Fondo muy claro acorde a la paleta */
+    border: 1px solid #e3eef7; /* Borde suave */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06); /* Sombra sutil */
+}
+
+/* Estilos específicos para los botones dentro del menú */
+.menu-opciones button,
+.menu-opciones a {
+    /* Sobrescribir el padding estándar para hacerlos más compactos y aptos para pestañas */
+    padding: 8px 12px; 
+    
+    /* Adaptar el color y el borde para un look de menú */
+    background-color: #f8f9fa; /* Fondo claro */
+    color: #495057; /* Texto oscuro */
+    border: 1px solid #ced4da; /* Borde sutil */
+    border-radius: 4px;
+    font-size: 0.9em; /* Fuente ligeramente más pequeña */
+    transition: all 0.2s ease;
+    text-decoration: none; /* Quitar subrayado a <a> */
+    display: inline-block; /* Permitir padding en <a> */
+}
+
+.menu-opciones button:hover:not(:disabled),
+.menu-opciones a:hover {
+    background-color: #e9ecef; /* Un gris más oscuro al pasar el mouse */
+    color: #212529; /* Texto más oscuro al pasar el mouse */
+    border-color: #adb5bd;
+}
+
+/* Opcional: Estilo para el botón activo/seleccionado */
+.menu-opciones button.active,
+.menu-opciones a.active {
+    background-color: #007bff; /* Color primario */
+    color: white;
+    border-color: #007bff;
+    font-weight: bold;
+}
+
+/* Accesibilidad: foco visible */
+.menu-opciones button:focus,
+.menu-opciones a:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+}
+
+/* Estilo consistente para los enlaces "Inicio" en cada sección */
+/* Estilo consistente para los enlaces "Inicio" en cada sección */
+section > a.active {
+    /* AJUSTE CLAVE: Reducir vertical, Aumentar horizontal (ej: 7px arriba/abajo, 30px izquierda/derecha) */
+    padding: 5.5px 40px; 
+    
+    /* Propiedades del botón base (idénticas a las que pediste) */
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    cursor: pointer; 
+    
+    /* Propiedades necesarias para enlaces */
+    display: inline-block; 
+    text-decoration: none; 
+    margin-top: 12px; 
+}
+
+/* Propiedad de hover: Igual al button:hover */
+section > a.active:hover {
+    background-color: #2980b9;
+}
+
+/* Propiedad de focus: para accesibilidad */
+section > a.active:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+}
+
+/* ============================ */
+/*        DISEÑO RESPONSIVO     */
+/* ============================ */
+
+@media (max-width: 992px) {
+    main {
+        margin: 10px;
+        padding: 16px;
+    }
+    #currentStepInfo {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 16px 8px;
+    }
+    h1 { font-size: 1.4rem; }
+    h2 { font-size: 1rem; }
+    h3 { font-size: 1rem; }
+
+    .head {
+        gap: 8px;
+    }
+    #inputString {
+        max-width: 100%;
+        width: 100%;
+    }
+    .botones {
+        flex-direction: column;
+        width: 100%;
+    }
+    .botones button {
+        width: 100%;
+    }
+
+    .menu-opciones {
+        gap: 8px;
+        padding: 10px;
+    }
+    .menu-opciones a, .menu-opciones button {
+        font-size: 0.95rem;
+        padding: 8px 10px;
+    }
+
+    .graph-container {
+        height: 220px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto; /* scroll horizontal si es necesario */
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        margin: 6px;
+        padding: 12px;
+    }
+    h1 { font-size: 1.2rem; }
+    h2, h3 { font-size: 0.95rem; }
+
+    .menu-opciones {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .menu-opciones a, .menu-opciones button {
+        width: 100%;
+        text-align: center;
+    }
+
+    section > a.active {
+        width: 100%;
+        text-align: center;
+    }
+
+    #currentStepInfo {
+        font-size: 0.95em;
+    }
+
+    .graph-container {
+        height: 200px;
+    }
+}
